@@ -1,0 +1,131 @@
+<html>
+<head>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://i.pinimg.com/originals/d4/67/d9/d467d9e9463619ae963e1c5c17ea9ff0.png');
+      background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      
+      }
+
+    h1 {
+      text-align: center;
+      color: #fff;
+    }
+
+    .event {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .event-image {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .event-info {
+      flex: 1;
+      margin-left: 20px;
+    }
+
+    .event-name {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .event-date {
+      color: #666;
+      margin-top: 10px;
+    }
+
+    .event-price {
+      color: #f00;
+      margin-top: 10px;
+    }
+
+    .event-button {
+      display: block;
+      background-color: #0f0;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .event-button.disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Fire Ticket Booking</h1>
+    <!-- Add your HTML elements here -->
+    <div class="event" id="event-1">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwg6nzzixItKvgfswSOTSVkxwV6Xp0A97__w&usqp=CAU" alt="Fire 1" class="event-image">
+      <div class="event-info">
+        <div class="event-name">Fire Show 1</div>
+        <div class="event-date">November 10, 2023</div>
+        <div class="event-price">Free</div>
+        <button class="event-button" onclick="bookEvent('event-1')">Book Now</button>
+      </div>
+    </div>
+    <div class="event" id="event-2">
+      <img src="https://static.vecteezy.com/system/resources/thumbnails/007/970/016/small/69-years-anniversary-celebration-with-elegant-circle-frame-isolated-on-dark-blue-background-design-for-greeting-card-birthday-party-wedding-event-party-ceremony-69-years-anniversary-logo-vector.jpg" alt="Fire 2" class="event-image">
+      <div class="event-info">
+        <div class="event-name">Fire Show 2</div>
+        <div class="event-date">November 11, 2023<p>Raas or Dandiya Raas is the socio-religious folk dance originating from Indian state of Gujarat and popularly performed in the festival of Navaratri.[1][2] The dance is performed in the Marwar region of Rajasthan too.[3] The etymology of Dandiya-Raas is in Sanskrit.[4] Dandiya-raas exists in the different forms, including the collegiate competitive form.[5] The dance style is now in a competitive format and a traditional format.[5]
+
+        </p></div>
+        <div class="event-price">100</div>
+        <button class="event-button" onclick="bookEvent('event-2')">Book Now</button> 
+      </div>
+    </div>
+    <div class="event" id="event-3">
+      <img src="https://timber.mhmcdn.com/public/member/891454/thumb/e984f4a4-f2a4-4c6d-9a2a-0bd91edb1a70-w300-p1.jpg" alt="Fire 3" class="event-image">
+      <div class="event-info">
+        <div class="event-name">Fire Show 3</div>
+        <div class="event-date">November 12, 2023</div>
+        <div class="event-price">200</div>
+        <button class="event-button" onclick="bookEvent('event-3')">Book Now</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Add your JavaScript code here
+    // A function to book an event by its id
+    function bookEvent(eventId) {
+      // Get the button element by its id
+      var button = document.getElementById(eventId).querySelector(".event-button");
+      // Check if the button is already disabled
+      if (button.classList.contains("disabled")) {
+        // If yes, alert the user that they have already booked the event
+        alert("You have already added to your court.");
+      } else {
+        // If no, disable the button and change its text to "Booked"
+        button.classList.add("disabled");
+        button.innerText = "Booked";
+        // Alert the user that they have successfully booked the event
+        alert("You have successfully added to your court.");
+      }
+    }
+  </script>
+</body>
+</html>

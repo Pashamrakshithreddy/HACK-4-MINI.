@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up Form</title>
+  <style>
+    body{
+        background-image: url('https://th.bing.com/th/id/R.18b7cbe7a6ce8ccbc204323b8f1b2903?rik=mI90viAw4U5RkQ&riu=http%3a%2f%2fsfwallpaper.com%2fimages%2fbackground-image-for-website-6.jpg&ehk=tda4eUQ5JOuI4c33aTerIdWQm6MD8eld3OQyp6gBI9M%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1');
+      background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    }
+    /* Add some style to the form */
+    .container {
+      width: 500px;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      padding: 25px;
+      box-sizing: border-box;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 25px;
+
+    }
+
+    h1 {
+      text-align: center;
+      color: black;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      display: block;
+      width: 80%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    button {
+      display: block;
+      width: 80%;
+      padding: 10px;
+      background-color: #04AA6D;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    /* Show an error message if the input is invalid */
+    .invalid {
+      border-color: red;
+    }
+
+    .error {
+      color: red;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sign Up Form</h1>
+    <!-- Create a form element to process the input -->
+    <form id="sign-up-form" action="/signup" method="POST">
+      <!-- Add inputs for each field with a matching label -->
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+      <label for="confirm-password">Confirm Password</label>
+      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+
+      <!-- Add a button to submit the form -->
+      <button type="submit" id="submit">Sign Up</button>
+    </form>
+    <!-- Add a div element to display the error message -->
+    <div id="error"></div>
+  </div>
+  <script>
+    // Get the form element by its id
+    var form = document.getElementById("sign-up-form");
+
+    // Add an event listener to the form when it is submitted
+    form.addEventListener("submit", function(event) {
+      // Prevent the default behavior of the form (sending data to the server)
+      event.preventDefault();
+
+      // Get the input elements by their id
+      var name = document.getElementById("name");
+      var email = document.getElementById("email");
+      var password = document.getElementById("password");
+      var confirmPassword = document.getElementById("confirm-password");
+
+      // Get the error element by its id
+      var error = document.getElementById("error");
+
+      // Clear the previous error message
+      error.innerHTML = "";
+
+      // Validate the input values
+      if (name.value === "") {
+        // If the name is empty, show an error message and add the invalid class to the input
+        error.innerHTML = "Name is required";
+        name.classList.add("invalid");
+      } else if (email.value === "") {
+        // If the email is empty, show an error message and add the invalid class to the input
+        error.innerHTML = "Email is required";
+        email.classList.add("invalid");
+      } else if (password.value === "") {
+        // If the password is empty, show an error message and add the invalid class to the input
+        error.innerHTML = "Password is required";
+        password.classList.add("invalid");
+      } else if (confirmPassword.value === "") {
+        // If the confirm password is empty, show an error message and add the invalid class to the input
+        error.innerHTML = "Confirm password is required";
+        confirmPassword.classList.add("invalid");
+      } else if (password.value !== confirmPassword.value) {
+        // If the password and confirm password do not match, show an error message and add the invalid class to the inputs
+        error.innerHTML = "Passwords do not match";
+        password.classList.add("invalid");
+        confirmPassword.classList.add("invalid");
+      } else {
+        // If the input values are valid, remove the invalid class from the inputs
+        name.classList.remove("invalid");
+        email.classList.remove("invalid");
+        password.classList.remove("invalid");
+        confirmPassword.classList.remove("invalid");
+
+        // Send the form data to the server using the fetch API
+        fetch(form.action, {
+          method: form.method,
+          body: new FormData(form)
+        }).then(function(response) {
+          // If the response is successful, redirect to the home page
+          if (response.ok) {
+            window.location.href = "/";
+          } else {
+            // If the response is not successful, show an error message
+            error.innerHTML = "Something went wrong. Please try again.";
+          }
+        }).catch(function(error) {
+          // If there is an error, show an error message
+          error.innerHTML = "Something went wrong. Please try again.";
+        });
+      }
+    });
+  </script>
+</body>
+</html>
